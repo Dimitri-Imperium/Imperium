@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Dimitri-Imperium/Imperium/refs/heads/main/AimbotLibrary.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Naellx/Oxidelib/main/Oxidelib.lua"))()
 if not Library then return warn("Oxidelib gagal dimuat") end
 
 Library:SetTheme("Ocean")
@@ -6,15 +6,15 @@ Library:SetTheme("Ocean")
 local MY_LOGO = "rbxassetid://70773874533764" -- ganti jika perlu
 
 local Window = Library:CreateWindow({
-    Name = "Imperium",
-    BrandSubtitle = "Universal Aimbot",
+    Name = "W424 HUB",
+    BrandSubtitle = "Arsenal ULTIMATE v6.0",
     Logo = MY_LOGO,
     LogoZoom = 1.5,
     ToggleKey = Enum.KeyCode.RightShift,
     ProfileKey = Enum.KeyCode.K,
     Size = UDim2.fromOffset(800, 650),
-    LoadingText = "Imperium",
-    LoadingSubtitle = "Loading Imperium...",
+    LoadingText = "W424 HUB",
+    LoadingSubtitle = "Loading v6.0...",
 })
 
 -- ============================================================
@@ -1300,8 +1300,8 @@ end)
 --  NOTIFIKASI AWAL
 -- ============================================================
 Window:Notify({
-    Title = "Imperium",
-    Content = "Imperium co. & Edas INC Loaded!",
+    Title = "W424 HUB v6.0",
+    Content = "Gabungan Source Old + Fitur Baru Loaded!",
     Type = "success",
     Duration = 4
 })
