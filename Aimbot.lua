@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/GbZYz8Qx"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Dimitri-Imperium/Imperium/refs/heads/main/AimbotLibrary.lua"))()
 if not Library then return warn("Oxidelib gagal dimuat") end
 
 Library:SetTheme("Ocean")
