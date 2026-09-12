@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Naellx/Oxidelib/main/Oxidelib.lua"))()
-if not Library then return warn("Oxidelib gagal dimuat") end
+if not Library then return warn("Imperium's UI gagal dimuat") end
 
 Library:SetTheme("Ocean")
 
@@ -7,13 +7,13 @@ local MY_LOGO = "rbxassetid://70773874533764"
 
 local Window = Library:CreateWindow({
     Name = "Imperium",
-    BrandSubtitle = "Imperium's Combat",
+    BrandSubtitle = "By Imperium INC.",
     Logo = MY_LOGO,
     LogoZoom = 1.5,
     ToggleKey = Enum.KeyCode.RightShift,
     ProfileKey = Enum.KeyCode.K,
     Size = UDim2.fromOffset(800, 650),
-    LoadingText = "Imperium - Combat",
+    LoadingText = "Imperium",
     LoadingSubtitle = "Loading...",
 })
 
