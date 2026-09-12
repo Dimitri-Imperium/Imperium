@@ -3,18 +3,18 @@ if not Library then return warn("Oxidelib gagal dimuat") end
 
 Library:SetTheme("Ocean")
 
-local MY_LOGO = "rbxassetid://70773874533764" -- ganti jika perlu
+local MY_LOGO = "rbxassetid://70773874533764" 
 
 local Window = Library:CreateWindow({
-    Name = "W424 HUB",
-    BrandSubtitle = "Arsenal ULTIMATE v6.0",
+    Name = "Imperium",
+    BrandSubtitle = "Imperium's Combat",
     Logo = MY_LOGO,
     LogoZoom = 1.5,
     ToggleKey = Enum.KeyCode.RightShift,
     ProfileKey = Enum.KeyCode.K,
     Size = UDim2.fromOffset(800, 650),
-    LoadingText = "W424 HUB",
-    LoadingSubtitle = "Loading v6.0...",
+    LoadingText = "Imperium - Combat",
+    LoadingSubtitle = "Loading...",
 })
 
 -- ============================================================
@@ -1300,8 +1300,8 @@ end)
 --  NOTIFIKASI AWAL
 -- ============================================================
 Window:Notify({
-    Title = "W424 HUB v6.0",
-    Content = "Gabungan Source Old + Fitur Baru Loaded!",
-    Type = "success",
+    Title = "Imperium",
+    Content = "Imperium & co. - Combat Loaded!",
+    Type = "Success",
     Duration = 4
 })
