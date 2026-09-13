@@ -1,3 +1,137 @@
+-- Imperium Admin UI configuration
+-- Designed to sit on top of your existing OxideLib file.
+-- Keep the library itself unchanged; this file only defines the UI layout.
+
+local UI = {}
+
+UI.Config = {
+    Name = "Imperium",
+    BrandSubtitle = "By Imperium INC.",
+    Logo = "rbxassetid://70773874533764",
+
+    -- Medium-sized window. Change these two numbers whenever you want.
+    Size = UDim2.fromOffset(720, 540),
+
+    ToggleKey = Enum.KeyCode.RightShift,
+
+    -- Uses the loading/open animation already built into your OxideLib file.
+    LoadingAnimation = true,
+    LoadingDuration = 2.15,
+    LoadingText = "Imperium",
+    LoadingSubtitle = "ADMIN PANEL",
+    LoadingFooter = "Imperium INC.",
+    LoadingBlur = true,
+
+    -- Built-in themes: Dark, Light, OLED.
+    Theme = "Dark",
+}
+
+-- Bottom navigation.
+-- To add another category later, add one entry here.
+UI.Tabs = {
+    { Name = "Combat",   Icon = "combat" },
+    { Name = "Movement", Icon = "move" },
+    { Name = "Visuals",  Icon = "visuals" },
+    { Name = "Extras",   Icon = "star" },
+    { Name = "Utility",  Icon = "settings" },
+}
+
+-- UI-only feature definitions.
+-- Add future controls to the appropriate tab without rebuilding the tab system.
+UI.Features = {
+    Combat = {
+        {
+            Type = "toggle",
+            Name = "Aimbot",
+            Description = "UI placeholder â connect this to your own authorized game logic.",
+            Flag = "Combat_Aimbot",
+            Default = false,
+        },
+    },
+
+    Movement = {},
+    Visuals = {},
+    Extras = {},
+    Utility = {},
+}
+
+-- Create the window after your existing library has been loaded.
+function UI.Create(Library)
+    assert(Library, "Imperium UI requires the existing OxideLib Library")
+
+    Library:SetTheme(UI.Config.Theme)
+
+    local Window = Library:CreateWindow({
+        Name = UI.Config.Name,
+        BrandSubtitle = UI.Config.BrandSubtitle,
+        Logo = UI.Config.Logo,
+        LogoZoom = 1.5,
+
+        ToggleKey = UI.Config.ToggleKey,
+        Size = UI.Config.Size,
+
+        LoadingAnimation = UI.Config.LoadingAnimation,
+        LoadingDuration = UI.Config.LoadingDuration,
+        LoadingText = UI.Config.LoadingText,
+        LoadingSubtitle = UI.Config.LoadingSubtitle,
+        LoadingFooter = UI.Config.LoadingFooter,
+        LoadingBlur = UI.Config.LoadingBlur,
+    })
+
+    -- Add every bottom tab from the configuration table.
+    for _, tabInfo in ipairs(UI.Tabs) do
+        local tab = Window:AddTab({
+            Name = tabInfo.Name,
+            Icon = tabInfo.Icon,
+        })
+
+        -- One sub-tab is created only when that category has controls.
+        local features = UI.Features[tabInfo.Name]
+        if features and #features > 0 then
+            local page = tab:AddSubTab("General")
+
+            for _, feature in ipairs(features) do
+                if feature.Type == "toggle" then
+                    page:AddToggle({
+                        Name = feature.Name,
+                        Description = feature.Description,
+                        Flag = feature.Flag,
+                        Default = feature.Default == true,
+
+                        -- Keep gameplay/admin logic outside this UI layer.
+                        Callback = feature.Callback,
+                    })
+
+                elseif feature.Type == "button" then
+                    page:AddButton({
+                        Name = feature.Name,
+                        Description = feature.Description,
+                        Flag = feature.Flag,
+                        Callback = feature.Callback,
+                        Primary = feature.Primary == true,
+                    })
+
+                elseif feature.Type == "slider" then
+                    page:AddSlider({
+                        Name = feature.Name,
+                        Description = feature.Description,
+                        Flag = feature.Flag,
+                        Min = feature.Min,
+                        Max = feature.Max,
+                        Default = feature.Default,
+                        Suffix = feature.Suffix,
+                        Callback = feature.Callback,
+                    })
+                end
+            end
+        end
+    end
+
+    return Window
+end
+
+return UI
+
 local TweenService     = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local GuiService       = game:GetService("GuiService")
